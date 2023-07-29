@@ -12,13 +12,13 @@ jobs:
 
       - uses: php-actions/composer@v6
         with:
-          php_version: "7.3"
+          php_version: "8.2"
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
           XDEBUG_MODE: coverage
         with:
-          php_version: "7.3"
+          php_version: "8.2"
           bootstrap: vendor/autoload.php
           configuration: build/config/phpunit.xml
