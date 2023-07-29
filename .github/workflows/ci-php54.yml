@@ -3,9 +3,8 @@ name: CI-old-php
 on: [push]
 
 jobs:
-  permissions: write-all
-
   build-test:
+    permissions: write-all
     runs-on: ubuntu-latest
 
     steps:

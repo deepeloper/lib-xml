@@ -3,9 +3,8 @@ name: CI-coverage
 on: [push]
 
 jobs:
-  permissions: write-all
-
   build-test:
+    permissions: write-all
     runs-on: ubuntu-latest
 
     steps:
