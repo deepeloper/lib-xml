@@ -1,7 +1,7 @@
 # XML library allowing to parse XML as array converting node values/attributes types using XSD.
 [![Packagist version](https://img.shields.io/packagist/v/deepeloper/lib-xml)](https://packagist.org/packages/deepeloper/lib-xml)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/deepeloper/lib-xml.svg)](http://php.net/)
-[![GitHub license](https://img.shields.io/github/license/deepeloper/lib-xml.svg)](https://github.com/deepeloper/lib-xml/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/deepeloper/lib-xml.svg)](https://github.com/deepeloper/lib-xml/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues-raw/deepeloper/lib-xml.svg)](https://github.com/deepeloper/lib-xml/issues)
 [![Packagist](https://img.shields.io/packagist/dt/deepeloper/lib-xml.svg)](https://packagist.org/packages/deepeloper/lib-xml)
 
