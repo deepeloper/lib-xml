@@ -12,16 +12,13 @@ namespace deepeloper\Lib\XML;
 use DOMDocument;
 use deepeloper\Lib\XML\Exception\XMLException;
 
-/**
- * @todo Add constants visibility since PHP 7.1.
- */
 class Converter
 {
-    const COLLAPSE_ATTRIBUTES = "COLLAPSE_ATTRIBUTES";
+    public const COLLAPSE_ATTRIBUTES = "COLLAPSE_ATTRIBUTES";
 
-    const COLLAPSE_CHILDREN = "COLLAPSE_CHILDREN";
+    public const COLLAPSE_CHILDREN = "COLLAPSE_CHILDREN";
 
-    const COLLAPSE_ARRAYS = "COLLAPSE_ARRAYS";
+    public const COLLAPSE_ARRAYS = "COLLAPSE_ARRAYS";
 
     /**
      * @var array

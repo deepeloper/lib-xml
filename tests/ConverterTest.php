@@ -278,10 +278,8 @@ class ConverterTest extends TestCase
      */
     public function testInvalidXSD()
     {
-        $this->setExpectedException(
-            "deepeloper\Lib\XML\Exception\XMLException",
-            "Cannot parse XSD"
-        );
+        $this->expectException(XMLException::class);
+        $this->expectExceptionMessage("Cannot parse XSD");
 
         $converter = new Converter();
         $xml = file_get_contents("./tests/data/phpunit.xml");
