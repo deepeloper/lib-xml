@@ -13,7 +13,7 @@ jobs:
       - uses: php-actions/composer@v6
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v2
         with:
           php_extensions: xdebug
           bootstrap: vendor/autoload.php
