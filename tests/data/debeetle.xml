@@ -1,0 +1,229 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<debeetle
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="debeetle.xsd"
+    launch="true"
+>
+<!-- xmlns:xi="http://www.w3.org/2001/XInclude" -->
+
+  <config name="common" use="true">
+
+    <shortAlias>\deepeloper\Debeetle\d</shortAlias>
+
+    <cookie>
+      <name>debeetle</name>
+      <path>/</path>
+      <expires>0</expires>
+    </cookie>
+
+    <path>
+      <assets>D:/repos/deepeloper/debeetle/assets</assets>
+      <script>/debeetle.php</script>
+      <!-- optional, root path is used to cut it from trace paths -->
+      <root>D:/repos/deepeloper/debeetle/public</root>
+    </path>
+
+    <bench>
+
+      <serverTime>
+        <format>Y-m-d H:i:s O (T)</format>
+      </serverTime>
+
+      <pageTotalTime>
+        <format>%.03f</format>
+        <warning>0.7</warning>
+        <critical>1</critical>
+        <exclude>scriptInit,debeetle</exclude>
+      </pageTotalTime>
+
+      <memoryUsage>
+        <format>%.02f</format>
+        <warning>10</warning>
+        <critical>15</critical>
+        <divider>1048576</divider>
+        <unit>MB</unit>
+        <exclude>scriptInit,debeetle</exclude>
+      </memoryUsage>
+
+      <peakMemoryUsage>
+        <format>%.02f</format>
+        <warning>30</warning>
+        <critical>60</critical>
+        <divider>1048576</divider>
+        <unit>MB</unit>
+        <exclude>scriptInit,debeetle</exclude>
+      </peakMemoryUsage>
+
+      <includedFiles>
+        <warning>100</warning>
+        <critical>120</critical>
+        <exclude>debeetle</exclude>
+      </includedFiles>
+
+    </bench>
+
+    <defaults>
+
+      <language>en</language>
+
+      <disabledPanelOpacity>0.7</disabledPanelOpacity>
+
+      <!-- Max panel height in percents of current window viewport -->
+      <maxPanelHeight>80</maxPanelHeight>
+
+      <skin>Default</skin>
+      <theme>Default</theme>
+
+      <opacity>
+        <properties>
+          <type>number</type>
+          <min>0.3</min>
+          <max>1</max>
+          <step>0.05</step>
+          <parse>float</parse>
+          <value>0.95</value>
+        </properties>
+        <selector>~$d.frame</selector>
+      </opacity>
+
+      <zoom>
+        <properties>
+          <type>number</type>
+          <min>0.5</min>
+          <max>3</max>
+          <step>0.05</step>
+          <parse>float</parse>
+          <value>1</value>
+        </properties>
+        <selector>div.bar</selector>
+        <selector>#dPanel</selector>
+      </zoom>
+
+      <options>
+        <write>
+          <encoding>windows-1251</encoding>
+          <htmlEntities>1</htmlEntities>
+          <nl2br>1</nl2br>
+        </write>
+      </options>
+
+    </defaults>
+
+    <history use="true">
+      <records>20</records>
+      <!-- session/cookie -->
+      <onRedirectionPassBy>session</onRedirectionPassBy>
+    </history>
+
+    <!-- disabled>
+      <tab>Debeetle|About</tab>
+    </disabled -->
+
+    <skin id="deepeloper~Default">
+      <class>deepeloper\Debeetle\Skin\Default\Controller</class>
+      <name>
+        <en>Default</en>
+        <ru>Умолчанец</ru>
+      </name>
+      <assets>
+        <locale>locale.php</locale>
+        <template>skin.html</template>
+        <js>addon.js.php</js>
+        <lessJs>skin.less.js.php</lessJs>
+        <less>skin.less</less>
+      </assets>
+
+      <theme id="deepeloper~Default~Default">
+        <class>deepeloper\Debeetle\Skin\Default\Theme\Default\Controller</class>
+        <name>
+          <en>Default</en>
+          <ru>Промолченец</ru>
+        </name>
+        <assets>
+          <lessJs>theme.less.js.php</lessJs>
+          <less>theme.less</less>
+        </assets>
+      </theme>
+
+      <theme id="deepeloper~Default~Other">
+        <class>deepeloper\Debeetle\Skin\Default\Theme\Other\Controller</class>
+        <name>
+          <en>Other</en>
+          <ru>Лишенец</ru>
+        </name>
+        <assets>
+          <lessJs>theme.less.js.php</lessJs>
+          <less>theme.less</less>
+        </assets>
+      </theme>
+    </skin>
+
+    <skin id="deepeloper~Custom">
+      <class>deepeloper\Debeetle\Skin\Custom\Controller</class>
+      <name>
+        <en>Custom</en>
+        <ru>Хитровыкроенец</ru>
+      </name>
+      <assets>
+        <locale>locale.php</locale>
+        <template>skin.html</template>
+        <js>addon.js.php</js>
+        <lessJs>skin.less.js.php</lessJs>
+        <less>skin.less</less>
+      </assets>
+
+      <theme id="deepeloper~Custom~Default">
+        <class>deepeloper\Debeetle\Skin\Custom\Theme\Default\Controller</class>
+        <name>
+          <en>Default</en>
+          <ru>Молчаливец</ru>
+        </name>
+        <assets>
+          <lessJs>theme.less.js.php</lessJs>
+          <less>theme.less</less>
+        </assets>
+      </theme>
+    </skin>
+
+    <!--        <xi:include href="Plugin_TraceAndDump.xml.php"/>-->
+
+    <plugin id="deepeloper~PHPInfo">
+      <class>deepeloper\Debeetle\Plugin\PHPInfo\Controller</class>
+      <assets>
+        <locale>locale.php</locale>
+        <js>addon.js.php</js>
+      </assets>
+    </plugin>
+
+    <plugin id="deepeloper~TraceAndDump">
+      <class>deepeloper\Debeetle\Plugin\TraceAndDump\Controller</class>
+      <assets>
+        <locale>locale.php</locale>
+        <js>addon.js.php</js>
+        <!-- lessJs>styles.less.js</lessJs -->
+        <less>styles.less</less>
+      </assets>
+
+      <method name="dump">
+        <maxStringLength>200</maxStringLength>
+        <maxNesting>0</maxNesting>
+        <maxCount>0</maxCount>
+        <expand>true</expand>
+        <expandEntities>true</expandEntities>
+      </method>
+
+      <method name="trace">
+        <expand>true</expand>
+        <displayArgs>true</displayArgs>
+        <expandArgs>true</expandArgs>
+      </method>
+    </plugin>
+
+  </config>
+
+  <config name="ichteaunder.local" use="true" developerMode="true" disableCaching="false">
+    <limit source="SERVER" key="HTTP_HOST" value="deepeloper.loc" />
+    <limit source="SERVER" key="REMOTE_ADDR" value="127.0.0.1" />
+  </config>
+
+</debeetle>

@@ -1,0 +1,50 @@
+{
+    "name": "deepeloper/lib-xml",
+    "type": "library",
+    "description": "XML library allowing to parse XML as array converting node values/attributes types using XSD",
+    "keywords": ["php", "library", "xml", "xsd"],
+    "license": "MIT",
+    "homepage": "https://github.com/deepeloper/lib-xml",
+    "authors": [
+        {
+            "name": "deepeloper",
+            "homepage": "https://github.com/deepeloper",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/deepeloper/lib-xml/issues"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.4",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "ext-xml": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4",
+        "squizlabs/php_codesniffer": "*",
+        "friendsofphp/php-cs-fixer": "*"
+     },
+    "autoload": {
+        "psr-4": {
+             "deepeloper\\Lib\\XML\\": "src"
+         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+             "deepeloper\\Lib\\XML\\": "tests"
+         }
+    },
+    "scripts": {
+        "phpcs": "phpcs --standard=PSR12"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
+    }
+}
