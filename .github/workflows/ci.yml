@@ -15,8 +15,10 @@ jobs:
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
-          TEST_NAME: Scarlett
+          XDEBUG_MODE: coverage
         with:
+          php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: build/config/phpunit.xml
           args: --coverage-text
+          php_version: "7.1"
