@@ -334,9 +334,7 @@ class Converter
                     continue;
                 }
                 if (1 === sizeof($child)) {
-                    // @todo Use array_key_first() since PHP >= 7.3.0.
-                    reset($child);
-                    if (0 === key($child)) {
+                    if (0 === array_key_first($child)) {
                         $child = $child[0];
                     }
                 }
