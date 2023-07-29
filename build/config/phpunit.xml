@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        bootstrap="../../vendor/autoload.php"
-        cacheResult="true"
-        colors="true"
-        verbose="true"
->
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  bootstrap="../../vendor/autoload.php"
+  cacheResult="true"
+  colors="true"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
+  cacheDirectory=".phpunit.cache
+">
+
+  <coverage>
+    <report>
+      <clover outputFile="../output/phpunit.coverage-clover.xml"/>
+      <html outputDirectory="../output/code-coverage"/>
+    </report>
+  </coverage>
 
   <testsuites>
     <testsuite name="Testsuite">
@@ -13,15 +21,12 @@
     </testsuite>
   </testsuites>
 
-  <filter>
-    <whitelist>
-      <directory suffix=".php">../../src</directory>
-    </whitelist>
-  </filter>
+  <logging/>
 
-  <logging>
-    <log type="coverage-clover" target="../output/phpunit.coverage-clover.xml" />
-    <log type="coverage-html" target="../output/code-coverage" />
-  </logging>
+  <source>
+    <include>
+      <directory suffix=".php">../../src</directory>
+    </include>
+  </source>
 
 </phpunit>

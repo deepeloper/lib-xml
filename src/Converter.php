@@ -7,6 +7,8 @@
  * @license [MIT](https://opensource.org/licenses/mit-license.php)
  */
 
+declare(strict_types=1);
+
 namespace deepeloper\Lib\XML;
 
 use DOMDocument;
@@ -20,31 +22,23 @@ class Converter
 
     public const COLLAPSE_ARRAYS = "COLLAPSE_ARRAYS";
 
-    /**
-     * @var array
-     */
-    protected $complexTypes;
+    protected array $complexTypes;
+
+    protected array $elementToType;
+
+    protected array $duplicateElementsHavingSameComplexType;
 
     /**
      * @var array
      */
-    protected $elementToType;
-
-    protected $duplicateElementsHavingSameComplexType;
-
-    /**
-     * @var array
-     */
-    protected $elementsAttributes;
+    protected array $elementsAttributes;
 
     /**
      * Parses XML to array without type conversion.
      *
-     * @param string $xml
-     * @return array
      * @see https://www.php.net/manual/en/function.xml-parse-into-struct.php#66487
      */
-    public function xmlToArray($xml)
+    public function xmlToArray(string $xml): array
     {
         $parser = xml_parser_create();
         xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
@@ -90,13 +84,8 @@ class Converter
 
     /**
      * Parses XML file with type conversion.
-     *
-     * @param string $xml
-     * @param string $xsd
-     * @param array $options
-     * @return array
      */
-    public function parse($xml, $xsd, array $options = [])
+    public function parse(string $xml, string $xsd, array $options = []): array
     {
         $xml = $this->xmlToArray($xml);
         $this->parseXSD($xsd);
@@ -122,11 +111,7 @@ class Converter
         return $xml;
     }
 
-    /**
-     * @param string $xsd
-     * @return void
-     */
-    protected function parseXSD($xsd)
+    protected function parseXSD(string $xsd): void
     {
         $doc = new DOMDocument();
         if (!@$doc->loadXML($xsd)) {
@@ -149,7 +134,7 @@ class Converter
         ksort($this->elementsAttributes);
     }
 
-    protected function collectComplexTypes(array $nodes)
+    protected function collectComplexTypes(array $nodes): void
     {
         foreach ($nodes as $node) {
             if ("complexType" === $node['/name']) {
@@ -158,10 +143,7 @@ class Converter
         }
     }
 
-    /**
-     * @return void
-     */
-    protected function parseXSDNodes(array $nodes, array $path = [], $complexType = null)
+    protected function parseXSDNodes(array $nodes, array $path = [], ?string $complexType = null): void
     {
         foreach ($nodes as $node) {
             switch ($node['/name']) {
@@ -210,21 +192,20 @@ class Converter
         }
     }
 
-    protected function duplicateComplexTypes()
+    protected function duplicateComplexTypes(): void
     {
         foreach ($this->duplicateElementsHavingSameComplexType as $destination => $source) {
-            $source .= "/";
-            $destination .= "/";
             $elements = array_filter($this->elementToType, function ($key) use ($source) {
-                return 0 === strpos($key, $source);
+                return str_starts_with($key, "$source/");
             }, ARRAY_FILTER_USE_KEY);
-            foreach ($elements as $element) {
-                $this->elementToType[str_replace($source, $destination, $element)] = $this->elementToType[$element];
+            foreach (array_keys($elements) as $element) {
+                $this->elementToType[str_replace("$source/", "$destination/", $element)] =
+                    $this->elementToType[$element];
             }
         }
     }
 
-    protected function convertTypes(array &$node, array $path = [])
+    protected function convertTypes(array &$node, array $path = []): void
     {
         $path[] = $node['/name'];
         $element = implode("/", $path);
@@ -262,12 +243,7 @@ class Converter
         }
     }
 
-    /**
-     * @param mixed $variable
-     * @param string $type
-     * @return void
-     */
-    protected function setType(&$variable, $type)
+    protected function setType(&$variable, $type): void
     {
         switch ($type) {
             case "string":
@@ -287,7 +263,7 @@ class Converter
         }
     }
 
-    protected function collapseAttributes(array &$node)
+    protected function collapseAttributes(array &$node): void
     {
         if (isset($node['/attributes'])) {
             $node = array_merge($node, $node['/attributes']);
@@ -300,7 +276,7 @@ class Converter
         }
     }
 
-    protected function collapseChildren(array &$node)
+    protected function collapseChildren(array &$node): void
     {
         if (isset($node['/value'])) {
             $node = $node['/value'];
@@ -323,7 +299,7 @@ class Converter
         unset($children, $node['/children']);
     }
 
-    protected function collapseArrays(array &$node, array $exclusions, $element)
+    protected function collapseArrays(array &$node, array $exclusions, string $element): void
     {
         foreach (array_keys($node) as $index) {
             $child = &$node[$index];
