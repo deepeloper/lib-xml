@@ -20,5 +20,7 @@ jobs:
           XDEBUG_MODE: coverage
         with:
           php_version: "8.2"
+          php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: build/config/phpunit.xml
+          args: --display-warnings --display-errors

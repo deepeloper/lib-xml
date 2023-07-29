@@ -23,4 +23,4 @@ jobs:
           php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: build/config/phpunit.xml
-          args: --coverage-text
+          args: --display-warnings --display-errors --coverage-text
