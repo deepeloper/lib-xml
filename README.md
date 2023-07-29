@@ -22,6 +22,8 @@ use deepeloper\Lib\XML\Converter;
 
 require_once "/path/to/vendor/autoload.php";
 
+$converter = new Converter();
+
 $xml = $converter->parse(
     file_get_contents("/path/to/xml"),
     file_get_contents("/path/to/xsd"),
