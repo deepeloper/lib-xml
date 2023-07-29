@@ -18,6 +18,6 @@ jobs:
           TEST_NAME: Scarlett
         with:
           bootstrap: vendor/autoload.php
-          configuration: build/config/test/phpunit.xml
+          configuration: build/config/phpunit.xml
           args: --coverage-text
           php_version: "5.6"

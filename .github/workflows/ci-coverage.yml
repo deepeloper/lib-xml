@@ -17,7 +17,7 @@ jobs:
         with:
           php_extensions: xdebug
           bootstrap: vendor/autoload.php
-          configuration: build/config/test/phpunit.xml
+          configuration: build/config/phpunit.xml
           args: --coverage-text
         env:
           XDEBUG_MODE: coverage
