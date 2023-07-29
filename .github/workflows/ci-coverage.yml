@@ -1,4 +1,4 @@
-name: CI
+name: CI-coverage
 
 on: [push]
 
@@ -20,5 +20,7 @@ jobs:
           XDEBUG_MODE: coverage
         with:
           php_version: "7.1"
+          php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: build/config/phpunit.xml
+          args: --coverage-text
