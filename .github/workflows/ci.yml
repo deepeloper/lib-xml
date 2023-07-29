@@ -3,6 +3,8 @@ name: CI
 on: [push]
 
 jobs:
+  permissions: write-all
+
   build-test:
     runs-on: ubuntu-latest
 
