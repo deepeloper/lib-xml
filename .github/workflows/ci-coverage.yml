@@ -15,7 +15,7 @@ jobs:
           php_version: "7.1"
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v2
         env:
           XDEBUG_MODE: coverage
         with:
