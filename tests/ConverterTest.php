@@ -9,6 +9,7 @@
 
 namespace deepeloper\Lib\XML;
 
+use deepeloper\Lib\XML\Exception\XMLException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,10 +26,8 @@ class ConverterTest extends TestCase
      */
     public function testEmptyXML()
     {
-        $this->setExpectedException(
-            "deepeloper\Lib\XML\Exception\XMLException",
-            "Invalid document end [5]"
-        );
+        $this->expectException(XMLException::class);
+        $this->expectExceptionMessage("Invalid document end [5]");
 
         $converter = new Converter();
         $converter->xmlToArray("");
@@ -43,10 +42,8 @@ class ConverterTest extends TestCase
      */
     public function testInvalidXML()
     {
-        $this->setExpectedException(
-            "deepeloper\Lib\XML\Exception\XMLException",
-            "Not well-formed (invalid token) [4]"
-        );
+        $this->expectException(XMLException::class);
+        $this->expectExceptionMessage("Not well-formed (invalid token) [4]");
 
         $converter = new Converter();
         $converter->xmlToArray("Invalid XML");

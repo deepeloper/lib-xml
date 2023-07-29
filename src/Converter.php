@@ -213,17 +213,14 @@ class Converter
         }
     }
 
-    /**
-     * @todo Use ARRAY_FILTER_USE_KEY flag since PHP >= 5.6.
-     */
     protected function duplicateComplexTypes()
     {
         foreach ($this->duplicateElementsHavingSameComplexType as $destination => $source) {
             $source .= "/";
             $destination .= "/";
-            $elements = array_filter(array_keys($this->elementToType), function ($key) use ($source) {
+            $elements = array_filter($this->elementToType, function ($key) use ($source) {
                 return 0 === strpos($key, $source);
-            });
+            }, ARRAY_FILTER_USE_KEY);
             foreach ($elements as $element) {
                 $this->elementToType[str_replace($source, $destination, $element)] = $this->elementToType[$element];
             }
