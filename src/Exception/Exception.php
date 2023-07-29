@@ -7,6 +7,8 @@
  * @license [MIT](https://opensource.org/licenses/mit-license.php)
  */
 
+declare(strict_types=1);
+
 namespace deepeloper\Lib\XML\Exception;
 
 use RuntimeException;
