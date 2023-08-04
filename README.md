@@ -13,7 +13,7 @@
 [![PHP 5.4](https://img.shields.io/badge/PHP->=5.4-%237A86B8)]()
 
 ## Installation
-Run `composer require deepeloper/lib-xml`.
+`composer require deepeloper/lib-xml`
 
 ## Usage
 
@@ -24,16 +24,46 @@ require_once "/path/to/vendor/autoload.php";
 
 $converter = new Converter();
 
+// @see https://www.php.net/manual/en/function.xml-parse-into-struct.php#66487
+// Little bit modified.
+$xml = $converter->xmlToArray(
+    file_get_contents("/path/to/xml")
+);
+
+// lib-xml<3.0.0, PHP<8.1:
 $xml = $converter->parse(
     file_get_contents("/path/to/xml"),
     file_get_contents("/path/to/xsd"),
     [
-        
+        // Optional, used to move attributes from '/attributes' key to the element. 
+        Converter::COLLAPSE_ATTRIBUTES => true,
+        // Optional, used to move children from '/children' key to the element as arrays named as child name. 
+        Converter::COLLAPSE_CHILDREN => true,
+        // Optional, used to convert arrays from previous option as 'name' => "value". 
+        Converter::COLLAPSE_ARRAYS => [
+            // Optional, used to exclude collapsing for list of the elements. 
+            'exclusions' => [
+                "node/subnode/...",
+                // ...,
+            ],
+        ],
+    ]
+);
+
+// lib-xml>=3.0.0, PHP>=8.1:
+$xml = $converter->parse(
+    file_get_contents("/path/to/xml"),
+    [
+        file_get_contents("/path/to/xsd1"),
+        file_get_contents("/path/to/xsd2"),
+        // ...    
+    ],
+    [
         Converter::COLLAPSE_ATTRIBUTES => true,
         Converter::COLLAPSE_CHILDREN => true,
         Converter::COLLAPSE_ARRAYS => [
             'exclusions' => [
-                "node1/node2/...",
+                "node/subnode/...",
                 // ...,
             ],
         ],

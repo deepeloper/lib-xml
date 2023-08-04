@@ -77,7 +77,7 @@ class ConverterTest extends TestCase
 
         $converter = new Converter();
         $xml = file_get_contents(__DIR__ . "/data/phpunit.xml");
-        $converter->parse($xml, "Invalid XSD");
+        $converter->parse($xml, ["Invalid XSD"]);
     }
 
     /**
@@ -93,7 +93,7 @@ class ConverterTest extends TestCase
         $expected = require_once __DIR__ . "/data/expected.testParse.php";
         $actual = $converter->parse(
             $xml,
-            $xsd,
+            [$xsd],
             [
                 Converter::COLLAPSE_ATTRIBUTES => true,
                 Converter::COLLAPSE_CHILDREN => true,

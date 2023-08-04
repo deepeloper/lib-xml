@@ -85,10 +85,12 @@ class Converter
     /**
      * Parses XML file with type conversion.
      */
-    public function parse(string $xml, string $xsd, array $options = []): array
+    public function parse(string $xml, array $xsds, array $options = []): array
     {
         $xml = $this->xmlToArray($xml);
-        $this->parseXSD($xsd);
+        foreach ($xsds as $xsd) {
+            $this->parseXSD($xsd);
+        }
         $this->convertTypes($xml);
 
         if (!empty($options[self::COLLAPSE_ATTRIBUTES])) {
