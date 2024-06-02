@@ -28,7 +28,7 @@ class ConverterTest extends TestCase
     public function testEmptyXML(): void
     {
         $this->expectException(XMLException::class);
-        $this->expectExceptionMessage("Invalid document end [5]");
+        $this->expectExceptionMessage("Not well-formed (invalid token) [4]");
 
         $converter = new Converter();
         $converter->xmlToArray("");
@@ -43,7 +43,7 @@ class ConverterTest extends TestCase
     public function testInvalidXML(): void
     {
         $this->expectException(XMLException::class);
-        $this->expectExceptionMessage("Invalid document end [5]");
+        $this->expectExceptionMessage("Not well-formed (invalid token) [4]");
 
         $converter = new Converter();
         $converter->xmlToArray("Invalid XML");
