@@ -15,8 +15,7 @@
     "support": {
         "issues": "https://github.com/deepeloper/lib-xml/issues"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "minimum-stability": "stable",
     "require": {
         "php": ">=8.1",
         "ext-dom": "*",
