@@ -5,8 +5,8 @@
   cacheResult="true"
   colors="true"
   xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
-  cacheDirectory=".phpunit.cache
-">
+  cacheDirectory=".phpunit.cache"
+>
 
   <coverage>
     <report>
