@@ -17,10 +17,17 @@ jobs:
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
-          XDEBUG_MODE: coverage
+          XDEBUG_MODE: "coverage"
         with:
           php_version: "8.3"
-          php_extensions: xdebug
-          bootstrap: vendor/autoload.php
-          configuration: build/config/phpunit.xml
-          args: --display-warnings --display-errors
+          php_extensions: "xdebug"
+          bootstrap: "vendor/autoload.php"
+          configuration: "build/config/phpunit.xml"
+          test_suffix: "Test.php"
+          coverage_clover: "coverage.xml"
+#          args: --display-warnings --display-errors
+
+      - name: Send code coverage report to Codecov.io
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
