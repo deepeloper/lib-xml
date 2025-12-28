@@ -48,7 +48,7 @@ class Converter
         if (0 !== $code) {
             throw new XMLException(xml_error_string($code) . " [$code]");
         }
-        xml_parser_free($parser);
+        unset($parser);
         $entities = [
             'tag' => "/name",
             'attributes' => "/attributes",
